@@ -1,0 +1,160 @@
+#:kivy 1.11.1
+
+<TrueWind>:
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+        # line color
+            rgba:.72,.52,.04, 1
+        Line:
+            width: 2
+            rectangle: self.x, self.y, self.width, self.height
+        Color:
+        # background color
+            rgba: 0, .75, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    padding: ['20dp','20dp','20dp','20dp']
+    spacing: '10dp'
+    BoxLayout:
+    # Title label
+        orientation: 'vertical'
+        size_hint_y: None
+        height: '40dp'
+        canvas.before:
+            Color:
+            # line color
+                rgba:.72,.52,.04, 1
+            Line:
+                width: 2
+                rectangle: self.x, self.y, self.width, self.height
+            Color:
+            # background color
+                rgba: .25, .42, 1, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "TRUE WIND APP WITH KIVY"
+            color: 0, 0 , 0, 1
+    GridLayout:
+        cols: 2
+        padding: ['20dp','20dp','20dp','20dp']
+        spacing: '10dp'
+        canvas.before:
+            Color:
+            # line color
+                rgba:.72,.52,.04, 1
+            Line:
+                width: 2
+                rectangle: self.x, self.y, self.width, self.height
+            Color:
+            # background color
+                rgba: .25, .42, 1, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "True Headding"
+            color: 0, 0 , 0, 1
+        TextInput:
+            id: heading
+            text:
+        Label:
+            text: "Speed Over Ground"
+            color: 0, 0 , 0, 1
+        TextInput:
+            id: s_speed
+            text:
+        Label:
+            text: "Apparent Wind Side"
+            color: 0, 0 , 0, 1
+        TextInput:
+            id: aw_side
+            text:
+        Label:
+            text: "Apparent Wind Angle"
+            color: 0, 0 , 0, 1
+        TextInput:
+            id: aw_angle
+            text:
+        Label:
+            text: "Apparent Wind Speed"
+            color: 0, 0 , 0, 1
+        TextInput:
+            id: aw_speed
+            text:
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: '50dp'
+        padding: ['20dp','20dp','20dp','20dp']
+        spacing: '10dp'
+        canvas.before:
+            Color:
+                rgba:.72,.52,.04, 1
+            Line:
+                width: 2
+                rectangle: self.x, self.y, self.width, self.height
+            Color:
+                rgba: .25, .42, 1, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+        Button:
+            text:"Submit"
+            color: 0, 0, 0, 1
+        Label:
+    GridLayout:
+        cols: 2
+        padding: ['20dp','20dp','20dp','20dp']
+        spacing: '10dp'
+        size_hint: (1, .4)
+        canvas.before:
+            Color:
+                rgba:.72,.52,.04, 1
+            Line:
+                width: 2
+                rectangle: self.x, self.y, self.width, self.height
+            Color:
+                rgba: .25, .42, 1, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "True Wind Direction"
+            color: 0, 0 , 0, 1
+        Label:
+            id: tw_direction
+            color: 0, 0 , 0, 1
+            canvas.before:
+                Color:
+                    rgba:.72,.52,.04, 1
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        Label:
+            text: "True Wind Speed"
+            color: 0, 0 , 0, 1
+        Label:
+            id: tw_speed
+            color: 0, 0 , 0, 1
+            canvas.before:
+                Color:
+                    rgba:.72,.52,.04, 1
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        
