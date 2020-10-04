@@ -28,13 +28,13 @@ class TrueWind(BoxLayout):
     tw_speed = ObjectProperty()
 
     def wind_data(self):
-        speed = t_w_speed(self.s_speed, self.aw_speed, self.aw_angle)
-        angle = t_w_angle(self.aw_speed, speed, self.s_speed)
-        direction = t_w_direction(self.s_heading, self.aw_side, angle)
+        speed = t_w_speed(self.s_speed.text, self.aw_speed.text, self.aw_angle.text)
+        angle = t_w_angle(self.aw_speed.text, speed, self.s_speed.text)
+        direction = t_w_direction(self.s_heading.text, self.aw_side.text, angle)
         true_direction = t_w_reduction(direction)
 
-        self.tw_direction = t_w_pretty_view(true_direction)
-        self.tw_speed = f'{speed}knots'
+        self.tw_direction.text = t_w_pretty_view(true_direction)
+        self.tw_speed.text = f'{speed} knots'
 
 
 class TrueWindApp(App):
