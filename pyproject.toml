@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "true_wind"
 version = "0.1.0"
-description = "A kivy application that calculates a ship's true wind, using the apparent wind and the ship's wind"
+description = "An application build with python and kivy that calculates a ship's true wind"
 authors = ["Dragos Manea <maneadr@gmail.com>"]
 license = "GNU AFFERO GENERAL PUBLIC LICENSE"
 readme = "README.rst"
