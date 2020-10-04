@@ -1,1 +1,28 @@
 #:kivy 1.11.1
+
+<DrawWind>:
+    size_hint: (None, None)
+    size: (300, 500)
+    title_align: 'center'
+    title_size: '18sp'
+    title_color: 0,0,0,1
+    text_size: self.size
+    title: "WIND VECTORS"
+    background: "true_wind\\img\\snow_white.png"
+    draw_label: draw_label
+    BoxLayout:
+        orientation:'vertical'
+        Label:
+            id: draw_label
+        Button:
+            color: 0, 0, 0, 1
+            text_size: self.size
+            font_size: '18sp'
+            halign: 'center'
+            valign: 'middle'
+            text: 'CLOSE'
+            background_normal: "true_wind\\img\\antique_white.png"
+            background_down: "true_wind\\img\\fire_brick.png"
+            pos_hint: {'x': .4, 'y':.2}
+            size_hint: (.3, .1)
+            on_press: root.dismiss()
