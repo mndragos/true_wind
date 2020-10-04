@@ -1,0 +1,49 @@
+#:kivy 1.11.1
+#:set template_height '20dp'
+#: set template_double_height '40dp'
+#: set template_small_height '10dp'
+#: set template_spacing '10dp'
+#: set template_padding '20dp'
+#: set template_font_size '20sp'
+
+<BackgroundColor@Widget>
+    background_color: 1, 1, 1, 1
+    line_color: 1, 1, 1, 1
+    line_width: 2
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+        Color:
+        # line color
+            rgba: root.line_color
+        Line:
+            width: root.line_width
+            rectangle: self.x, self.y, self.width, self.height
+ 
+<TemplateBox@BoxLayout+BackgroundColor>
+    orientation: 'vertical'
+    background_color: .25, .42, 1, 1
+    line_color: .72,.52,.04, 1
+
+<TemplateGrid@GridLayout+BackgroundColor>
+    cols: 2
+    background_color: .25, .42, 1, 1
+    line_color: .72,.52,.04, 1
+    padding: template_padding
+    spacing: template_spacing
+
+<TemplateLabel@Label+BackgroundColor>
+    background_color: .25, .42, 1, 1
+    line_color: .72,.52,.04, 0
+    color: 0, 0 , 0, 1
+    text_size: self.size
+    valign: 'middle'
+    halign: 'left'
+
+<TemplateText@TextInput>
+    multiline:False
+    input_filter: 'float'
+    write_tab: False
