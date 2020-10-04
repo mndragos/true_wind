@@ -18,6 +18,15 @@
         Rectangle:
             size: self.size
             pos: self.pos
+    # ObjectProperty declaration
+    s_heading: s_heading
+    s_speed: s_speed
+    aw_side: aw_side
+    aw_angle: aw_angle
+    aw_speed: aw_speed
+    tw_direction: tw_direction
+    tw_speed: tw_speed
+
     TemplateBox:                            # Title label 
         size_hint_y: None
         height: template_double_height
@@ -26,7 +35,7 @@
             halign: 'center'
     TemplateGrid:                           # Grid Insert of data
         TemplateLabel:
-            text: "True Headding"
+            text: "True Heading"
         TemplateText:
             id: s_heading
             hint_text: "Ship's Heading"
@@ -65,6 +74,7 @@
             font_size: template_font_size
             color: 0, 0, 0, 1
             text: "Submit"
+            on_press: root.wind_data()
     TemplateGrid:                           # Return information
         size_hint: (1, .4)
         TemplateLabel:

@@ -70,7 +70,7 @@ def t_w_reduction(t_w_direction: float) -> float:
         return round(t_w_direction, 1)
 
 
-def nice_view(t_w_reduction: float) -> str:
+def t_w_pretty_view(t_w_reduction: float) -> str:
     """Returns a string formated as degree.
     example: takes float 3.0 and returns 003.0°
     Args:
