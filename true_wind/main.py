@@ -7,6 +7,7 @@ from kivy.config import Config
 Config.set('graphics', 'width', 500)
 Config.set('graphics', 'height', 500)
 
+from kivy.resources import resource_add_path
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 
@@ -16,6 +17,8 @@ class TrueWind(BoxLayout):
 
 
 class TrueWindApp(App):
+    resource_add_path("true_wind\\templates")
+
     def build(self):
         return TrueWind()
 
