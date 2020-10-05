@@ -5,9 +5,9 @@ from kivy.uix.popup import Popup
 from kivy.properties import ObjectProperty
 
 
-class DrawWind(Popup):
+class GraphicSolution(Popup):
     draw_label = ObjectProperty
 
     def show_popup(self, value):
-        drawing = DrawWind()
+        drawing = GraphicSolution()
         drawing.open()

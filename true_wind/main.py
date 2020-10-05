@@ -16,7 +16,7 @@ from true_wind.resources.true_wind_angle import t_w_angle
 from true_wind.resources.true_wind_direction import (t_w_direction, t_w_reduction,
                                                      t_w_pretty_view)
 from true_wind.resources.true_wind_speed import t_w_speed
-from true_wind.resources.draw_wind import DrawWind
+from true_wind.resources.graphic_solution import GraphicSolution
 
 
 class TrueWind(BoxLayout):
@@ -27,7 +27,7 @@ class TrueWind(BoxLayout):
     aw_speed = ObjectProperty()
     tw_direction = ObjectProperty()
     tw_speed = ObjectProperty()
-    drawing = DrawWind()
+    graphic = GraphicSolution()
 
     def wind_data(self):
         speed = t_w_speed(self.s_speed.text, self.aw_speed.text, self.aw_angle.text)
@@ -39,7 +39,7 @@ class TrueWind(BoxLayout):
         self.tw_speed.text = f'{speed} knots'
 
     def show_graphic_solution(self):
-        self.drawing.show_popup('value')
+        self.graphic.show_popup('value')
 
 
 class TrueWindApp(App):
