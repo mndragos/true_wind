@@ -28,13 +28,13 @@
     tw_direction: tw_direction
     tw_speed: tw_speed
 
-    TemplateBox:                            # Title label 
+    TemplateBox:                            # Title label inside a BoxLayout 
         size_hint_y: None
         height: template_double_height
         TemplateLabel:
             text: "TRUE WIND APP WITH KIVY"
             halign: 'center'
-    TemplateGrid:                           # Grid Insert of data
+    TemplateGrid:                           # Data fields with labels inside a GridLayout
         TemplateLabel:
             text: "True Heading"
         TemplateText:
@@ -66,17 +66,25 @@
             id: aw_speed
             hint_text: "Apparent Wind Speed"
             text:
-    TemplateBox:                            # Button box
+    TemplateGrid:                           # Two buttons inside a GlidLayout
+        cols: 2
+        background_color: .25, .42, 1, 0
+        line_color: .72,.52,.04, 0
+        padding: 0
+        spacing: template_spacing
         size_hint_y: None
         height: template_double_height
-        Button:
+        TemplateButton:
             background_normal: "true_wind\\img\\royal_blue.png"
             background_down: "true_wind\\img\\forest_green.png"
-            font_size: template_font_size
-            color: 0, 0, 0, 1
             text: "Submit"
             on_press: root.wind_data()
-    TemplateGrid:                           # Return information
+        TemplateButton:
+            background_normal: "true_wind\\img\\royal_blue.png"
+            background_down: "true_wind\\img\\forest_green.png"
+            text: "Graphic Solution"
+            on_press: root.show_graphic_solution()
+    TemplateGrid:                           # Return data field Labels inside a GridLayout
         size_hint: (1, .4)
         TemplateLabel:
             text: "True Wind Direction"
