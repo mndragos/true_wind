@@ -1,5 +1,4 @@
 # main.py
-# import os
 import kivy
 kivy.require('1.11.1')
 from kivy.config import Config
