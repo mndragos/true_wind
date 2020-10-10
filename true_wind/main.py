@@ -38,12 +38,21 @@ class TrueWind(BoxLayout):
         aw_speed = float(self.aw_speed.text)
 
         if s_speed <= 25 and aw_speed <= 25:
-            s_speed = s_speed*10
-            aw_speed = aw_speed*10
+            if s_speed >= 15 and aw_speed >= 15:
+                s_speed = s_speed*5
+                aw_speed = aw_speed*5
+            elif s_speed <= 15 and aw_speed <= 15:
+                s_speed = s_speed*10
+                aw_speed = aw_speed*10
         else:
             s_speed, aw_speed
 
         return s_speed, aw_speed
+
+    def graphic_origin(self):
+        angle = self.aw_angle.text
+        side = self.aw_side.text
+        return self.graphic.ORIGIN(side, angle)
 
     def wind_data(self) -> None:
         """The fuction is bound to 'Solution' button in truewind.kv.
@@ -76,7 +85,8 @@ class TrueWind(BoxLayout):
         """
         aw_positions = self.positions()
         s_speed = self.scaling_speed()[0]
-        self.graphic.show_popup(aw_positions, s_speed)
+        graphic_origin = self.graphic_origin()
+        self.graphic.show_popup(aw_positions, s_speed, graphic_origin)
 
 
 class TrueWindApp(App):
