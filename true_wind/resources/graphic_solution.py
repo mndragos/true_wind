@@ -1,13 +1,12 @@
 import kivy
 kivy.require('1.11.1')
 from kivy.uix.popup import Popup
-from kivy.properties import (ListProperty, ObjectProperty)
+from kivy.properties import ObjectProperty
 from kivy.graphics import Color, Line
 from math import cos, radians, sin
 
 
 class GraphicSolution(Popup):
-    ORIGIN = ListProperty([255, 200])
     s_line = ObjectProperty()
     aw_line = ObjectProperty()
     tw_line = ObjectProperty()
@@ -15,23 +14,47 @@ class GraphicSolution(Popup):
 
     def __init__(self, **kwargs):
         super(GraphicSolution, self).__init__(**kwargs)
-        with self.canvas:
+        with self.canvas.after:
             Color(1, 0, 0, 1)
-            self.s_line = Line(points=[self.ORIGIN[0], self.ORIGIN[1], self.ORIGIN[0],
-                                       self.ORIGIN[1]], width=2)
+            self.s_line = Line(points=[0, 0, 0, 0], width=2)
             Color(0, 1, 0, 1)
-            self.aw_line = Line(points=[self.ORIGIN[0], self.ORIGIN[1], self.ORIGIN[0],
-                                        self.ORIGIN[1]], width=2)
+            self.aw_line = Line(points=[0, 0, 0, 0], width=2)
             Color(0, 0, 1, 1)
-            self.tw_line = Line(points=[self.ORIGIN[0], self.ORIGIN[1], self.ORIGIN[0],
-                                        self.ORIGIN[1]], width=2)
+            self.tw_line = Line(points=[0, 0, 0, 0], width=2)
 
-    def show_popup(self, aw_positions, s_speed):
+    def ORIGIN(self, side, angle):
+
+        side = str(side)
+        angle = float(angle)
+
+        if angle <= 90:
+            if side.lower() == "port":
+                ORIGIN = [360, 200]
+            elif side.lower() == "bow":
+                ORIGIN = [250, 200]
+            elif side.lower() == "starboard":
+                ORIGIN = [120, 200]
+        elif angle >= 90:
+            if side.lower() == "port":
+                ORIGIN = [360, 300]
+            elif side.lower() == "stern":
+                ORIGIN = [250, 300]
+            elif side.lower() == "starboard":
+                ORIGIN = [120, 300]
+
+        return ORIGIN
+
+    def show_popup(self, aw_positions, s_speed, graphic_origin):
+        ORIGIN = graphic_origin
         drawing = GraphicSolution()
-        drawing.s_line.points[3] = self.ORIGIN[1] + float(s_speed)
-        drawing.aw_line.points[2:] = [aw_positions[0], aw_positions[1]]
-        drawing.tw_line.points[1] = self.ORIGIN[1] + float(s_speed)
-        drawing.tw_line.points[2:] = [aw_positions[0], aw_positions[1]]
+        drawing.ORIGIN = ORIGIN
+        drawing.s_line.points = [ORIGIN[0], ORIGIN[1], ORIGIN[0],
+                                 ORIGIN[1] + float(s_speed)]
+        drawing.aw_line.points = [ORIGIN[0], ORIGIN[1], ORIGIN[0] + aw_positions[0],
+                                  ORIGIN[1] + aw_positions[1]]
+        drawing.tw_line.points = [ORIGIN[0], ORIGIN[1] + float(s_speed),
+                                  ORIGIN[0] + aw_positions[0], ORIGIN[1] +
+                                  aw_positions[1]]
         drawing.s_line.points = drawing.s_line.points
         drawing.aw_line.points = drawing.aw_line.points
         drawing.tw_line.points = drawing.tw_line.points
@@ -48,11 +71,10 @@ class GraphicSolution(Popup):
         Returns:
             list: [angle, speed, side]
         """
-
         angle = float(angle)
         speed = float(speed)
         side = str(side)
-        ORIGIN = self.ORIGIN
+        ORIGIN = [0, 0]
         pos = [0, 0]
         alfa = 90 - angle
 
