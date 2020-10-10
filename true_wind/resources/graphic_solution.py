@@ -22,8 +22,18 @@ class GraphicSolution(Popup):
             Color(0, 0, 1, 1)
             self.tw_line = Line(points=[0, 0, 0, 0], width=2)
 
-    def ORIGIN(self, side, angle):
+    def ORIGIN(self, side: str, angle: float) -> list:
+        """Determines the origin for the graphic solution,
+        depending of the wind side and angle.
 
+        Args:
+            side (str): The apparent wind side, which is relative to the ship.
+            angle (float): The angle under which the apparent wind is meeting the ship.
+
+        Returns:
+            ORIGIN(list): The point from where the ship's and apparent wind vectors
+                        are draws onto the canvas.
+        """
         side = str(side)
         angle = float(angle)
 
