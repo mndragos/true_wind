@@ -28,22 +28,54 @@ class TrueWind(BoxLayout):
     tw_speed = ObjectProperty()
     graphic = GraphicSolution()
 
-    def wind_data(self):
+    def scaling_speed(self) -> tuple:
+        """Compares the ship and wind speed and scales them up for
+        the graphic solution.
+        Returns:
+            tuple: (s_speed, aw_speed)
+        """
+        s_speed = float(self.s_speed.text)
+        aw_speed = float(self.aw_speed.text)
+
+        if s_speed <= 25 and aw_speed <= 25:
+            s_speed = s_speed*10
+            aw_speed = aw_speed*10
+        else:
+            s_speed, aw_speed
+
+        return s_speed, aw_speed
+
+    def wind_data(self) -> None:
+        """The fuction is bound to 'Solution' button in truewind.kv.
+        Listens to the GUI inputs and calculates the true wind
+        speed and direction.
+        Returns the result to a text label in the GUI.
+        """
+        # Takes values from user.
         speed = t_w_speed(self.s_speed.text, self.aw_speed.text, self.aw_angle.text)
         angle = t_w_angle(self.aw_speed.text, speed, self.s_speed.text)
         direction = t_w_direction(self.s_heading.text, self.aw_side.text, angle)
         true_direction = t_w_reduction(direction)
-
+        # returns results to user.
         self.tw_direction.text = t_w_pretty_view(true_direction)
         self.tw_speed.text = f'{speed} knots'
 
-    def positions(self):
-        return self.graphic.vector_position(
-            self.aw_angle.text, self.aw_speed.text, self.aw_side.text)
+    def positions(self) -> list:
+        """Uses the vector_position method from GraphicSolution and inputs
+        from the GUI.
 
-    def show_graphic_solution(self):
+        Returns:
+            list[float, float, str]: returns list [angle, speed, side]
+        """
+        return self.graphic.vector_position(
+            self.aw_angle.text, self.scaling_speed()[1], self.aw_side.text)
+
+    def show_graphic_solution(self) -> None:
+        """The fuction is bound to 'Graphic Solution' button in truewind.kv and
+        opens up GraphicSolution Popup.
+        """
         aw_positions = self.positions()
-        s_speed = self.s_speed.text
+        s_speed = self.scaling_speed()[0]
         self.graphic.show_popup(aw_positions, s_speed)
 
 
