@@ -5,6 +5,9 @@ from kivy.config import Config
 
 Config.set('graphics', 'width', 500)
 Config.set('graphics', 'height', 500)
+Config.set('graphics', 'borderless', 0)
+Config.set('graphics', 'resizable', 0)
+Config.set('kivy', 'window_icon', r'true_wind\img\ship_bow.png')
 
 from kivy.resources import resource_add_path
 from kivy.app import App
@@ -90,7 +93,7 @@ class TrueWind(BoxLayout):
 
 
 class TrueWindApp(App):
-    resource_add_path("true_wind\\templates")
+    resource_add_path(r"true_wind\templates")
 
     def build(self):
         return TrueWind()
