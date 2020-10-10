@@ -84,28 +84,27 @@ class GraphicSolution(Popup):
         angle = float(angle)
         speed = float(speed)
         side = str(side)
-        ORIGIN = [0, 0]
         pos = [0, 0]
         alfa = 90 - angle
 
-        if side.lower() == "port" and (alfa > 0 or alfa < 0):
-            pos[0] = round(ORIGIN[0] - speed*cos(radians(alfa)), 1)
-            pos[1] = round(ORIGIN[1] + speed * sin(radians(alfa)), 1)
-            return pos
-        elif side.lower() == "starboard" and (alfa > 0 or alfa < 0):
-            pos[0] = round(ORIGIN[0] + speed*cos(radians(alfa)), 1)
-            pos[1] = round(ORIGIN[1] + speed * sin(radians(alfa)), 1)
-            return pos
-        elif side.lower() == "bow" or side.lower() == "stern":
-            pos[0] = ORIGIN[0]
-            pos[1] = ORIGIN[1] + speed
-            return pos
-
-        if side.lower() == "port" and alfa == 0:
-            pos[0] = ORIGIN[0] - speed
-            pos[1] = ORIGIN[1]
-            return pos
-        elif side.lower() == "starboard" and alfa == 0:
-            pos[0] = ORIGIN[0] + speed
-            pos[1] = ORIGIN[1]
-            return pos
+        if side.lower() == "port":
+            if alfa < 0 or alfa > 0:
+                pos[0] = round(- speed*cos(radians(alfa)), 1)
+                pos[1] = round(speed * sin(radians(alfa)), 1)
+            elif alfa == 0:
+                pos[0] = - speed
+                pos[1] = 0
+        elif side.lower() == "starboard":
+            if alfa < 0 or alfa > 0:
+                pos[0] = round(speed*cos(radians(alfa)), 1)
+                pos[1] = round(speed * sin(radians(alfa)), 1)
+            elif alfa == 0:
+                pos[0] = speed
+                pos[1] = 0
+        elif side.lower() == "bow":
+            pos[0] = 0
+            pos[1] = speed
+        elif side.lower() == "stern":
+            pos[0] = 0
+            pos[1] = - speed
+        return pos
