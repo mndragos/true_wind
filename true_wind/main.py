@@ -37,8 +37,14 @@ class TrueWind(BoxLayout):
         self.tw_direction.text = t_w_pretty_view(true_direction)
         self.tw_speed.text = f'{speed} knots'
 
+    def positions(self):
+        return self.graphic.vector_position(
+            self.aw_angle.text, self.aw_speed.text, self.aw_side.text)
+
     def show_graphic_solution(self):
-        self.graphic.show_popup('value')
+        aw_positions = self.positions()
+        s_speed = self.s_speed.text
+        self.graphic.show_popup(aw_positions, s_speed)
 
 
 class TrueWindApp(App):
