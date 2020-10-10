@@ -101,10 +101,10 @@ class GraphicSolution(Popup):
             elif alfa == 0:
                 pos[0] = speed
                 pos[1] = 0
-        elif side.lower() == "bow":
+        elif side.lower() == "bow":    # alfa = 90
             pos[0] = 0
-            pos[1] = speed
-        elif side.lower() == "stern":
+            pos[1] = speed        # TW joins the top ends and will show a difference.
+        elif side.lower() == "stern":  # alfa = -90
             pos[0] = 0
-            pos[1] = - speed
+            pos[1] = - speed      # TW joins the top ends and will show an addition.
         return pos
