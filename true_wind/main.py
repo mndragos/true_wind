@@ -52,9 +52,15 @@ class TrueWind(BoxLayout):
 
         return s_speed, aw_speed
 
-    def graphic_origin(self):
-        angle = self.aw_angle.text
+    def graphic_origin(self) -> list:
+        """Uses ORIGIN() from GraphicSolution() and
+        inputs of apparent angle and ship's side from GUI.
+
+        Returns:
+            list[str, float]: returns a list [side, angle]
+        """
         side = self.aw_side.text
+        angle = self.aw_angle.text
         return self.graphic.ORIGIN(side, angle)
 
     def wind_data(self) -> None:
@@ -73,7 +79,7 @@ class TrueWind(BoxLayout):
         self.tw_speed.text = f'{speed} knots'
 
     def positions(self) -> list:
-        """Uses the vector_position method from GraphicSolution and inputs
+        """Uses the vector_position() from GraphicSolution() and inputs
         from the GUI.
 
         Returns:
