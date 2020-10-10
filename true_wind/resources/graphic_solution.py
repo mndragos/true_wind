@@ -46,7 +46,7 @@ class GraphicSolution(Popup):
             side (str): wind side relative to the ship.
 
         Returns:
-            list: [description]
+            list: [angle, speed, side]
         """
 
         angle = float(angle)
