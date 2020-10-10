@@ -17,11 +17,14 @@ class GraphicSolution(Popup):
         super(GraphicSolution, self).__init__(**kwargs)
         with self.canvas:
             Color(1, 0, 0, 1)
-            self.s_line = Line(points=[self.ORIGIN[0], self.ORIGIN[1], self.ORIGIN[0], self.ORIGIN[1]], width=2)
+            self.s_line = Line(points=[self.ORIGIN[0], self.ORIGIN[1], self.ORIGIN[0],
+                                       self.ORIGIN[1]], width=2)
             Color(0, 1, 0, 1)
-            self.aw_line = Line(points=[self.ORIGIN[0], self.ORIGIN[1], self.ORIGIN[0], self.ORIGIN[1]], width=2)
+            self.aw_line = Line(points=[self.ORIGIN[0], self.ORIGIN[1], self.ORIGIN[0],
+                                        self.ORIGIN[1]], width=2)
             Color(0, 0, 1, 1)
-            self.tw_line = Line(points=[self.ORIGIN[0], self.ORIGIN[1], self.ORIGIN[0], self.ORIGIN[1]], width=2)
+            self.tw_line = Line(points=[self.ORIGIN[0], self.ORIGIN[1], self.ORIGIN[0],
+                                        self.ORIGIN[1]], width=2)
 
     def show_popup(self, aw_positions, s_speed):
         drawing = GraphicSolution()
