@@ -55,8 +55,9 @@
             input_filter: None
             text:
             on_text:
-                if self.text.lower() == 'bow': aw_angle.text = '0'
-                elif self.text.lower() == 'stern': aw_angle.text = '180'
+                if self.text.lower() == 'bow': aw_angle.text = '0'; aw_angle.disabled = True
+                elif self.text.lower() == 'stern': aw_angle.text = '180'; aw_angle.disabled = True
+                else: aw_angle.disabled = False
         TemplateLabel:
             text: "Apparent Wind Angle"
         TemplateText:
