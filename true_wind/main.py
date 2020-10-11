@@ -19,6 +19,7 @@ from true_wind.resources.true_wind_direction import (t_w_direction, t_w_reductio
                                                      t_w_pretty_view)
 from true_wind.resources.true_wind_speed import t_w_speed
 from true_wind.resources.graphic_solution import GraphicSolution
+from true_wind.resources.error_message import ErrorMessage
 
 
 class TrueWind(BoxLayout):
@@ -31,6 +32,7 @@ class TrueWind(BoxLayout):
     tw_direction = ObjectProperty()
     tw_speed = ObjectProperty()
     graphic = GraphicSolution()
+    error_message = ErrorMessage()
 
     def scaling_speed(self) -> tuple:
         """Compares the ship and wind speed and scales them up for
@@ -64,22 +66,6 @@ class TrueWind(BoxLayout):
         angle = self.aw_angle.text
         return self.graphic.ORIGIN(side, angle)
 
-    def wind_data(self) -> None:
-        """The fuction is bound to 'Solution' button in truewind.kv.
-        Listens to the GUI inputs and calculates the true wind
-        speed and direction.
-        Returns the result to a text label in the GUI.
-        """
-        # Takes values from user.
-        speed = t_w_speed(self.s_speed.text, self.aw_speed.text, self.aw_angle.text)
-        angle = t_w_angle(self.aw_speed.text, speed, self.s_speed.text)
-        direction = t_w_direction(self.s_heading.text, self.aw_side.text, angle)
-        true_direction = t_w_reduction(direction)
-        # returns results to user.
-        self.tw_angle.text = t_w_pretty_view(angle)
-        self.tw_direction.text = t_w_pretty_view(true_direction)
-        self.tw_speed.text = f'{speed} knots'
-
     def positions(self) -> list:
         """Uses the vector_position() from GraphicSolution() and inputs
         from the GUI.
@@ -90,14 +76,38 @@ class TrueWind(BoxLayout):
         return self.graphic.vector_position(
             self.aw_angle.text, self.scaling_speed()[1], self.aw_side.text)
 
+    def wind_data(self) -> None:
+        """The fuction is bound to 'Solution' button in truewind.kv.
+        Listens to the GUI inputs and calculates the true wind
+        speed and direction.
+        Returns the result to a text label in the GUI.
+        """
+        try:
+            # Takes values from user.
+            speed = t_w_speed(self.s_speed.text, self.aw_speed.text, self.aw_angle.text)
+            angle = t_w_angle(self.aw_speed.text, speed, self.s_speed.text)
+            direction = t_w_direction(self.s_heading.text, self.aw_side.text, angle)
+            true_direction = t_w_reduction(direction)
+            # returns results to user.
+            self.tw_angle.text = t_w_pretty_view(angle)
+            self.tw_direction.text = t_w_pretty_view(true_direction)
+            self.tw_speed.text = f'{speed} knots'
+        except ValueError:
+            return self.error_message.show_error(
+                "Please,\nfill in the required fields\ncorrectly.")
+
     def show_graphic_solution(self) -> None:
         """The fuction is bound to 'Graphic Solution' button in truewind.kv and
         opens up GraphicSolution Popup.
         """
-        aw_positions = self.positions()
-        s_speed = self.scaling_speed()[0]
-        graphic_origin = self.graphic_origin()
-        self.graphic.show_popup(aw_positions, s_speed, graphic_origin)
+        try:
+            aw_positions = self.positions()
+            s_speed = self.scaling_speed()[0]
+            graphic_origin = self.graphic_origin()
+            self.graphic.show_popup(aw_positions, s_speed, graphic_origin)
+        except ValueError:
+            return self.error_message.show_error(
+                "Please,\nfill in the required fields\ncorrectly.")
 
 
 class TrueWindApp(App):
