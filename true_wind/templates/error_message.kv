@@ -1,0 +1,32 @@
+#:kivy 1.11.1
+
+<ErrorMessage>:
+    error_label: _error_label
+    size_hint: (None, None)
+    size: (250, 250)
+    pos_hint: {'x': .2, 'top':1}
+    title_align: 'center'
+    title_size: template_font_size
+    title_color: 0,0,0,1
+    text_size: self.size
+    title: "Error Message"
+    separator_color: 1, 1, 1, 0
+    background:"true_wind\\img\\snow_white.png"
+    auto_dismiss:False
+    BoxLayout:
+        orientation: "vertical"
+        TemplateLabel:
+            id: _error_label
+            background_color: 1, 1, 1,1
+            line_color: .72,.52,.04, 1
+            font_size: template_font_size
+            halign: "center"
+            text:
+        TemplateButton:
+            font_size: template_font_size
+            text:'CLOSE'
+            background_normal: "true_wind\\img\\antique_white.png"
+            background_down: "true_wind\\img\\fire_brick.png"
+            pos_hint:{'x': .35, 'y':.2}
+            size_hint: (.3, .2)
+            on_press: root.dismiss()
