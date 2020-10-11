@@ -27,6 +27,7 @@ class TrueWind(BoxLayout):
     aw_side = ObjectProperty()
     aw_angle = ObjectProperty()
     aw_speed = ObjectProperty()
+    tw_angle = ObjectProperty()
     tw_direction = ObjectProperty()
     tw_speed = ObjectProperty()
     graphic = GraphicSolution()
@@ -75,6 +76,7 @@ class TrueWind(BoxLayout):
         direction = t_w_direction(self.s_heading.text, self.aw_side.text, angle)
         true_direction = t_w_reduction(direction)
         # returns results to user.
+        self.tw_angle.text = t_w_pretty_view(angle)
         self.tw_direction.text = t_w_pretty_view(true_direction)
         self.tw_speed.text = f'{speed} knots'
 
