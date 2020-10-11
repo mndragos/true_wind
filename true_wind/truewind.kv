@@ -25,6 +25,7 @@
     aw_side: aw_side
     aw_angle: aw_angle
     aw_speed: aw_speed
+    tw_angle: tw_angle
     tw_direction: tw_direction
     tw_speed: tw_speed
 
@@ -89,7 +90,14 @@
             text: "Graphic Solution"
             on_press: root.show_graphic_solution()
     TemplateGrid:                           # Return data field Labels inside a GridLayout
-        size_hint: (1, .4)
+        size_hint: (1, .6)
+        TemplateLabel:
+            text: "True Wind Angle"
+        TemplateLabel:
+            id: tw_angle
+            background_color: 1, 1, 1, 1
+            line_color: .72,.52,.04, 1
+            line_width: 1.2
         TemplateLabel:
             text: "True Wind Direction"
         TemplateLabel:
