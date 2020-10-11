@@ -41,10 +41,10 @@ class TrueWind(BoxLayout):
         aw_speed = float(self.aw_speed.text)
 
         if s_speed <= 25 and aw_speed <= 25:
-            if s_speed >= 15 and aw_speed >= 15:
+            if s_speed >= 15 or aw_speed >= 15:
                 s_speed = s_speed*5
                 aw_speed = aw_speed*5
-            elif s_speed <= 15 and aw_speed <= 15:
+            elif s_speed < 15 or aw_speed < 15:
                 s_speed = s_speed*10
                 aw_speed = aw_speed*10
         else:
