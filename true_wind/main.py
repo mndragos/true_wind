@@ -50,9 +50,9 @@ class TrueWind(BoxLayout):
             elif s_speed < 15 or aw_speed < 15:
                 s_speed = s_speed*10
                 aw_speed = aw_speed*10
-        else:
-            s_speed, aw_speed
-
+        elif s_speed > 25 or aw_speed > 25:
+            s_speed = s_speed*2
+            aw_speed = aw_speed*2
         return s_speed, aw_speed
 
     def graphic_origin(self) -> list:
